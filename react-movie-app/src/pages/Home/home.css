@@ -1,0 +1,60 @@
+.home{
+   padding: 10px;
+    display: flex;
+    gap:20px;
+    
+    
+}
+
+.sidebar{
+    width: 30%;
+    border: 1px solid grey;
+    padding: 5px;
+}
+.movies{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+.sort-by-year{
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    align-items: start;
+    color: azure;
+}
+
+.sort-by-year input{
+    margin:10px ;
+    
+    
+}
+.filter-by-type{
+    margin-top: 20px;
+    text-align: start;
+    color: azure;
+}
+
+.filter-by-type select{
+    margin-top: 8px;
+    width: 100%;
+    padding: 5px;
+}
+
+@media (max-width:480px) {
+    .movies{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+    }
+   
+}
+
+@media (max-width:780px) {
+    .movies{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+   
+}

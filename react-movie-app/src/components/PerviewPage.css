@@ -1,0 +1,34 @@
+.perview{
+    height: max-content;
+}
+.image-container {
+    position: relative;
+    overflow: hidden;
+    width: 70%;
+    margin: auto;
+  }
+  
+  .movie-poster {
+
+   height: 80vh;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  
+  .movie-details {
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+  }
+  .movie-details p{
+    margin-top: 10px;
+  }
+  .see{
+    margin-top: 50px;
+    text-decoration: none;
+    border-radius: 3px;
+    background-color: red;
+    color:azure;
+    padding:10px;
+  }
+  
