@@ -1,60 +1,71 @@
-.home{
-   padding: 10px;
+.home {
+    padding: 10px;
     display: flex;
-    gap:20px;
-    
-    
-}
-
-.sidebar{
-    width: 30%;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .sidebar {
+    flex: 1;
+    max-width: 300px;
     border: 1px solid grey;
     padding: 5px;
-}
-.movies{
-    width: 100%;
+    
+  }
+  
+  .movies {
+    flex: 1;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-}
-.sort-by-year{
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px 10px;
+  }
+  
+  .sort-by-year {
     display: flex;
     flex-direction: column;
     justify-self: start;
     align-items: start;
     color: azure;
-}
-
-.sort-by-year input{
-    margin:10px ;
-    
-    
-}
-.filter-by-type{
+  }
+  
+  .sort-by-year input {
+    margin: 10px;
+  }
+  
+  .filter-by-type {
     margin-top: 20px;
     text-align: start;
     color: azure;
-}
-
-.filter-by-type select{
+  }
+  
+  .filter-by-type select {
     margin-top: 8px;
     width: 100%;
     padding: 5px;
-}
-
-@media (max-width:480px) {
-    .movies{
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
+  }
+  
+  .search-bar {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  .search-bar input,
+  .search-bar button {
+    padding: 7px;
+  }
+  
+  @media (max-width: 780px) {
+    .movies {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-   
-}
-
-@media (max-width:780px) {
-    .movies{
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
+  }
+  
+  @media (max-width: 480px) {
+    .sidebar,
+    .movies {
+      flex: 1;
+      max-width: 100%;
     }
-   
-}
+  }
+  

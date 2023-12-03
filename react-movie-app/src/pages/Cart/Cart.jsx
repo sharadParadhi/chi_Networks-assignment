@@ -1,9 +1,9 @@
 import React from 'react'
-import MovieCard from '../../components/MovieCard';
+import FavCard from '../../components/Card';
 
 function Cart() {
 
-  let favoritList=JSON.parse(localStorage.getItem('favoritesList')) || [];
+  let favoritList=JSON.parse(localStorage.getItem('fList')) || [];
   console.log(favoritList)
   
 
@@ -16,7 +16,7 @@ function Cart() {
       <div className='movies'>
        {favoritList.map((ele,ind)=>{
         return (
-          <MovieCard
+          <FavCard
             kye={ind}
             {...ele}
           />

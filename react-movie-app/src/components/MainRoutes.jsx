@@ -6,9 +6,11 @@ import Cart from '../pages/Cart/Cart'
 import Login from '../pages/Login/login'
 import PerviewPage from './PerviewPage'
 
+
 function MainRoutes() {
   return (
     <div>
+     
         <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
@@ -17,7 +19,7 @@ function MainRoutes() {
         <Route path='/:id' element={<PerviewPage/>}/>
 
         </Routes>
-      
+        
     </div>
   )
 }

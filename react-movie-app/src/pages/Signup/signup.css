@@ -38,3 +38,10 @@
     font: bold;
     font-size: larger;
 }
+
+@media (max-width:480px){
+    .login-left{
+        display: none;
+    }
+    
+}

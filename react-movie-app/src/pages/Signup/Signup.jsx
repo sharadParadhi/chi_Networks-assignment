@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import "./signup.css"
 
 function Signup() {
@@ -9,31 +9,22 @@ function Signup() {
     name:"",
   })
 
+  const navigate=useNavigate()
  const [isValidEmail,setIsValidEmail]=useState(true)
   const [isValidPassword, setIsValidPassword] = useState(true);
 
   
   
-  let UserList=JSON.parse(localStorage.getItem('favorites')) || [];
+  let UserList=JSON.parse(localStorage.getItem('userList')) || [];
   const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 
   // email validation
-  const checkEmail=(email)=>{
-    let flag=false;
+ 
+    const checkEmail = (email) => {
+      return UserList.some((user) => user.email === email);
+    };
 
-    UserList.filter((ele,ind)=>{
-      if(ele.email===email){
-        flag=true
-      }else{
-        return ele
-      }
-    })
-
-    console.log(flag)
-    return flag
-
-  }
-
+    
 
   const handleChange=(e)=>{
     const {name,value}=e.target;
@@ -42,35 +33,45 @@ function Signup() {
     })
   }
 
+
   const handlesubmit=(e)=>{
     e.preventDefault()
 
     //check email already present
     if(checkEmail(userDetail.email)){
-      setIsValidEmail(!isValidEmail)
+      return setIsValidEmail(!isValidEmail)
       
     }
    
-    // check password validation
-    if(setIsValidPassword(strongPasswordRegex.test(userDetail.password))){
-      console.log(userDetail.password,"valid")
-    }else{
-      console.log(userDetail.password,"unValid")
-    }
-  
 
-    // add favorites
-    const favorites=[...UserList,userDetail]
-    localStorage.setItem('favorites', JSON.stringify(favorites))
-    console.log(favorites)
-    setuserDetail("")
-   
-  }
+      // check password validation
+    if (!strongPasswordRegex.test(userDetail.password)) {
+      setIsValidPassword(false);
+      return;
+    } else {
+      setIsValidPassword(true);
+    }
+
+  // add favorites
+    const favorites = [...UserList, userDetail];
+    localStorage.setItem('userList', JSON.stringify(favorites));
+    alert(`${userDetail.email} Registered SuccesfullY`)
+    navigate("/login");
+
+    console.log(favorites);
+    setuserDetail({
+      email: "",
+      password: "",
+      name: "",
+    });
+};
+
+  
   return (
     <div className='login-container'>
     <div className='login'>
       <div className='login-left'>
-        <img src='' alt=''/>
+        <img src='https://my.chinetworks.com/App_Themes/Blue/images/loginillsImg.png' alt=''/>
       </div>
       <div className='login-right'>
         <form onSubmit={handlesubmit}>

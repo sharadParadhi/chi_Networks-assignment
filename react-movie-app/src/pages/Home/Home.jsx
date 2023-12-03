@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import "./home.css"
 import MovieCard from '../../components/MovieCard'
-import { useSearchParams } from 'react-router-dom'
+
 
 
 
 function Home() {
   const [movieData,setMovieData]=useState([])
   const [sort,setSort]=useState("")
-  const [search,setSearch]=useSearchParams()
+  const [searchQuery, setSearchQuery] = useState('');
 
-  console.log(search.get("search"))
+  
  
-
+  
   const getData=(url)=>{
     axios.get(url)
     .then((res)=>{
+      if(res.data.Search===undefined){
+
+        alert("result not found")
+        return 
+      }
       let newData=res.data.Search.map((ele,ind)=>{
         console.log(ele.Year.length)
         if(ele.Year.length<5){
@@ -33,10 +38,11 @@ function Home() {
       setMovieData(res.data.Search)
     })
   }
-  
+
+
+ 
 
   const handleSort=(e)=>{
-    console.log(e.target.value)
     const sortValue=e.target.value;
     setSort(e.target.value)
 
@@ -54,20 +60,43 @@ function Home() {
 
 
   useEffect(()=>{
-      getData("http://www.omdbapi.com/?apikey=a269a908&s=movies")
+    const apiUrl = `http://www.omdbapi.com/?apikey=a269a908&s=movies`;
+    getData(apiUrl);
   },[])
 
 
+  const handleSearchChange=(e)=>{
+    const {value}=e.target;
+    setSearchQuery(value)
+  }
+
+  
   const handleSelect=(e)=>{
     getData(`http://www.omdbapi.com/?apikey=a269a908&s=movies&type=${e.target.value}`)
   }
 
   
-
+  const handleSearch=()=>{
+    console.log(searchQuery)
+    getData(`http://www.omdbapi.com/?apikey=a269a908&s=${searchQuery}`)
+    setSearchQuery("")
+  }
   
 
   return (
+    <>
+    <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <button onClick={handleSearch}>🔍</button>
+      </div>
     <div className='home'>
+
+
 
      <div className='sidebar'>
       <div className='sort-by-year' onChange={handleSort}>
@@ -91,16 +120,19 @@ function Home() {
 
 
      <div className='movies'>
-       {movieData.map((ele,ind)=>{
+       {movieData.length?movieData.map((ele,ind)=>{
         return (
           <MovieCard
             kye={ind}
             {...ele}
           />
         )
-       })}
+       }):<h2>Result Not Fond</h2>
+      
+      }
      </div>
     </div>
+    </>
   )
 }
 

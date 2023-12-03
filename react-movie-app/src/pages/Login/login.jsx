@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 const Login=()=> {
 const [loginDetail,setLoginDetail]=useState({email:"",password:""})
 const [checkValidDetail,setCheckValidDetail]=useState(true)
-  const favorite=JSON.parse(localStorage.getItem("favorites")) 
+  const favorite=JSON.parse(localStorage.getItem("userList")) 
   const navigate=useNavigate()
 
   localStorage.setItem('isAuth', JSON.stringify("false"))
@@ -36,7 +36,6 @@ const [checkValidDetail,setCheckValidDetail]=useState(true)
     
     if(checkLog(loginDetail)){
       alert(`Welcome Back ${loginDetail.email}`)
-      
       localStorage.setItem('isAuth', JSON.stringify("true"))
       navigate("/")
     }else{
@@ -52,7 +51,7 @@ const [checkValidDetail,setCheckValidDetail]=useState(true)
     <div className='login-container'>
     <div className='login'>
       <div className='login-left'>
-        <img src='' alt=''/>
+        <img src='https://my.chinetworks.com/App_Themes/Blue/images/loginillsImg.png' alt=''/>
       </div>
       <div className='login-right'>
         <form onSubmit={handleSubmit}>
@@ -62,7 +61,7 @@ const [checkValidDetail,setCheckValidDetail]=useState(true)
           <label>User Email</label>
           <input value={loginDetail.email} name="email" placeholder='email' onChange={handleChange}/>
           <label>Password</label>
-          <input value={loginDetail.password} name="password" placeholder='password' onChange={handleChange}/>
+          <input type='password' value={loginDetail.password} name="password" placeholder='password' onChange={handleChange}/>
           <button type='submit'>Login</button>
         </form>
         <p>Not a customer yet ? <span><Link to="/signup">SignUp</Link></span> </p>

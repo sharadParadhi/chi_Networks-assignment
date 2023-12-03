@@ -42,12 +42,12 @@ function PerviewPage() {
         <h2 className="movie-title">{perView.Title}</h2>
         <p className="movie-year">{perView.Year}</p>
         <p className="movie-type">{perView.Type}</p>
-        
+        <Link to="/" className='see'>See All Movies</Link>
       </div>
 
       
     </div>
-    <Link to="/" className='see'>See All Movies</Link>
+   
     </>
 
 

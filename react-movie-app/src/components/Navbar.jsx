@@ -1,38 +1,35 @@
 
 
 import React, {  useEffect, useState } from "react";
-import {Link, NavLink, useSearchParams} from "react-router-dom"
+import {Link, NavLink, useNavigate} from "react-router-dom"
 import "./Navbar.css"
+import { AiOutlineUnorderedList,AiOutlineClose  } from "react-icons/ai";
 
 
 
 
  const Navbar = () => {
   
-  const [search,setSearch]=useSearchParams("")
-  const [searchValue,setSerchValue]=useState("")
-  search.get(searchValue)
+  
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sValue,setSvalue]=useState("")
+
+  const navigate = useNavigate();
 
   const handleToggleSearch = () => {
-    console.log(searchValue)
+    
     setIsExpanded(!isExpanded);
-    setSearch(searchValue)
+    
   };
 
+ 
   const toggleMenu = () => {
     console.log(isOpen)
     setIsOpen(!isOpen);
   };
 
-  useEffect(()=>{
-    
-
-  },[search])
-
-  console.log(search)
-
+ 
 
   
 
@@ -44,32 +41,14 @@ import "./Navbar.css"
       </Link>
 
       <div className="menu" onClick={toggleMenu}>
-       <span></span>
-       <span></span>
-       <span></span>
+      {isOpen?<AiOutlineClose size={60} style={{color:"white"}}/>: <AiOutlineUnorderedList size={60} style={{color:"white"}}/>}
       </div>
-
-      {/* <div>
-        <SearchBar/>
-      </div> */}
 
       <ul className={isOpen?"open":""}>
-      <li>
-      <div className={`search-bar ${isExpanded ? 'expanded' : ''}`}>
+        <li>
+
       
-      {isExpanded && (
-        <input
-        value={searchValue}
-          type="text"
-          placeholder="Search..."
-          className="search-input"
-          onChange={(e)=>setSerchValue(e.target.value)}
-        />
-      )}
-      <div className="search-icon" onClick={handleToggleSearch}>
-        🔍
-      </div>
-    </div>
+
         </li>
         <li>
           <NavLink to="/login">Login</NavLink>

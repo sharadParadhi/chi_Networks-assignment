@@ -15,8 +15,11 @@
     
 
 }
-.login .left{
-    padding: 1rem;
+.login-left{
+    padding: 20px;
+}
+ .login-right{
+    padding: 20px;
 }
 
 .login-right form{
@@ -44,4 +47,11 @@
     color: white;
     font: bold;
     font-size: larger;
+}
+
+@media (max-width:480px){
+    .login-left{
+        display: none;
+    }
+    
 }

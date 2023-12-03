@@ -1,13 +1,12 @@
 import React from 'react'
+import { Navigate, useLocation } from 'react-router-dom';
 
-function Privateroute({child}) {
+function Privateroute({children}) {
     let isAuth=JSON.parse(localStorage.getItem('isAuth')) ;
-    console.log(isAuth)
+    const location=useLocation()
+    
   return (
-    <div>
-
-      
-    </div>
+   isAuth ?children:<Navigate state={location.pathname} to="/login" replace={true}/>
   )
 }
 
